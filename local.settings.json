@@ -1,8 +1,0 @@
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "",
-    "FUNCTIONS_WORKER_RUNTIME": "python",
-    "CosmosDBConnection":"AccountEndpoint=https://azuresql-codebyscott-com.documents.azure.com:443/;AccountKey=vEAnYa43QTuxXUzjOgkWfQjcawmJBtKIVSmAyamXGl3ZdcS521cnfqlK5tFmuq8zLarDZ6lgQvcQQUI1CIhWjg==;"
-  }
-}

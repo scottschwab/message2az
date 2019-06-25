@@ -67,8 +67,8 @@ def parse_slack_message(req):
 
 
 def extract_message(event):
-    print("have message")
-    print(event)
+    logger.info("have message")
+    logger.info(f"extracting message from {event}")
     # if 'text' not in event:
     #     logger.warn("missing text")
     #     logger.warn(event)
@@ -102,15 +102,22 @@ def encode(user_id, text, timeof):
 def main(req: func.HttpRequest, cosmos: func.Out[func.Document]) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
     message = parse_slack_message(req)
+    logging.info(f"message in : {json.dumps(message)}")
     if 'error' in message:
         return func.HttpResponse(message['error'], status_code = 500)
     elif 'challenge' in message:
         return func.HttpResponse(message['challenge'], status_code = 200)
     elif 'event' in message:
         user_id, text, time = extract_message(message['event'])
+        logging.info(f"back from event {user_id}  {text}  {time}")
     das_msg = encode(user_id, text, time)
+    logging.info(f"das message {json.dumps(das_msg)}")
     if das_msg is not None:
-        cosmos.set(func.Document.from_dict(das_msg))
-        return func.HttpResponse(body=json.dumps(das_msg), status_code = 200, headers = {"Context-type":"application/json"})
+        try:
+            cosmos.set(func.Document.from_dict(das_msg))
+        except Exception as e:
+            logger.error(f"error raised {e}")
+
+        return func.HttpResponse(body="sent", status_code = 200, headers = {"Context-type":"application/json"})
     else:
         return func.HttpResponse(body='{ "result" : "unhandled" }', status_code = 200, headers = {"Context-type":"application/json"})
