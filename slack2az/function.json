@@ -1,0 +1,30 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "name": "cosmos",
+      "type": "cosmosDB",
+      "direction": "out",
+      "ConnectionStringSetting": "CosmosDBConnection",
+      "databaseName": "messages",
+      "collectionName": "messages_1",
+      "createIfNotExists": true
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return",
+      "dataType": "string" 
+    }
+  ]
+}
