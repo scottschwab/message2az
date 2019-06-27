@@ -19,11 +19,12 @@ def main(req: func.HttpRequest,
             d[keep] = doc[keep]
         body.append(d)
         logger.info(body)
+
         # doc['read'] = 'T'
         # documentsout.set(func.Document.from_dict(doc)
-        
+        body_bag = { "messages" : body }
     return func.HttpResponse(
-        body = json.dumps(body), 
+        body = json.dumps(body_bag), 
         headers = {"Content-type":"application/json"}, 
         status_code=200)
 
