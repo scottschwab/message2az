@@ -7,11 +7,21 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "post"
+        "get"
       ]
     },
     {
-      "name": "cosmos",
+      "name": "documentsin",
+      "type": "cosmosDB",
+      "direction": "in",
+      "ConnectionStringSetting": "CosmosDBConnection",
+      "databaseName": "messages",
+      "collectionName": "messages_1",
+      "createIfNotExists": false,
+      "sqlQuery": "SELECT * FROM r WHERE r.read='F'"
+    },
+    {
+      "name": "documentsout",
       "type": "cosmosDB",
       "direction": "out",
       "ConnectionStringSetting": "CosmosDBConnection",

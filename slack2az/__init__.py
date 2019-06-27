@@ -95,7 +95,7 @@ def encode(user_id, text, timeof):
         item['color'] = color
         item['effect'] = effect
         item['text'] = text
-        item['read'] = False  
+        item['read'] = "F"  
 
         print(item)
         return item
