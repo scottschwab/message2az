@@ -1,7 +1,7 @@
 azure-cosmos==3.1.0
 azure-functions==1.0.0b4
 azure-functions-worker==1.0.0b8
-certifi==2019.6.16
+certifi==2022.12.7
 chardet==3.0.4
 grpcio==1.20.1
 grpcio-tools==1.20.1
